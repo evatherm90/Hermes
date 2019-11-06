@@ -19,7 +19,7 @@ public class MVCConfiguration extends WebMvcConfigurerAdapter{
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/VIEW/jsp/");
+        resolver.setPrefix("/VIEW/jsp/");//ayto exei protereothta enanti toy properties
         resolver.setPrefix(".jsp");
         registry.viewResolver(resolver);
 

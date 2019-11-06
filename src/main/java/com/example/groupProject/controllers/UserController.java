@@ -52,7 +52,7 @@ public class UserController {
 //        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
 //        u.setUserpassword(hashed);
         userService.registerUser(u);
-        return "success";
+        return "index";
         // }
     }
 
