@@ -13,8 +13,8 @@ import com.example.groupProject.model.User;
  */
 public interface UserService {
     
-    public Iterable<User> getUsers();
+    Iterable<User> getUsers();
     
-    public void registerUser(User u);
+    void registerUser(User u);
         
 }
