@@ -33,6 +33,12 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    //method to show home page
+    @GetMapping("/")
+    public String homePage() {
+        return "homePage";
+    }
+
     //method to show register user form
     @GetMapping("/showregistrationform")
     public String showRegistrationForm(ModelMap m) {
