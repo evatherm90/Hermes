@@ -16,5 +16,7 @@ public interface UserService {
     Iterable<User> getUsers();
     
     void registerUser(User u);
+
+    public void deleteUser(String id);
         
 }
