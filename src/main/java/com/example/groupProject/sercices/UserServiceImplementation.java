@@ -30,4 +30,9 @@ public class UserServiceImplementation implements UserService{
        ur.save(u);  
     }
     
+    @Override
+    public void deleteUser(String id){
+        ur.deleteById();
+    }
+    
 }
