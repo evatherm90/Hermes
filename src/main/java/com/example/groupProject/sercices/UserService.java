@@ -6,6 +6,7 @@
 package com.example.groupProject.sercices;
 
 import com.example.groupProject.model.User;
+import java.util.Optional;
 
 /**
  *
@@ -15,8 +16,12 @@ public interface UserService {
     
     Iterable<User> getUsers();
     
+    public Optional<User> findById(String id);
+    
     void registerUser(User u);
 
     public void deleteUser(String id);
+    
+    public void updateUser(User u);
         
 }

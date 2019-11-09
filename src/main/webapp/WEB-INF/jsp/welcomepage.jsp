@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : Nov 8, 2019, 10:08:12 PM
+    Created on : Nov 6, 2019, 4:01:34 PM
     Author     : antonis
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Welcome!</h1>
     </body>
 </html>

@@ -10,11 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Register yea</title>
+        <title>Register</title>
     </head>
     <body>
-        <spring:form method="POST" modelAttribute="myuser"
-                     action="${pageContext.request.contextPath}/register">
+        <spring:form method="POST" modelAttribute="user">
+<%--                     action="${pageContext.request.contextPath}/register">--%>
             <table>
                 
                 <tr>

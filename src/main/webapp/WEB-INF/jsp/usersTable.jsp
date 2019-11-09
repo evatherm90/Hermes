@@ -23,83 +23,33 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 
-        <script src="js/modal.js"></script>
+
     </head>
     <body>
-        
+
         <table>
             <thead>
                 <tr>
-                    <th>id</th>
                     <th>first name</th>
                     <th>last name</th>
                     <th>email</th>
                     <th>username</th>
                     <th>edit</th>
+                    <th>delete</th>
                 </tr>
             </thead>
-            <c:forEach items="${result}" var="user">
+            <c:forEach items="${users}" var="user">
                 <tr>
-                    <td><c:out value="${user.userid}" /></td>
                     <td><c:out value="${user.userfirstname}" /></td>
                     <td><c:out value="${user.userlastname}" /></td>
                     <td><c:out value="${user.useremail}" /></td>
                     <td><c:out value="${user.username}" /></td>
                     <td>
-                        <button type="button" class="btn btn-info" id="editbtn" userid="${user.userid}">edit</button>
+                    <td><a href="<c:url value='/edit-${user.userid}-user' />">edit</a></td>
+                    <td><a href="<c:url value='/delete-${user.userid}-user' />">delete</a></td>
                     </td>
                 </tr>
             </c:forEach>
         </table>
-
-
-
-        <div id="modaledituser${user.userid}" class="modal fade">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title">Edit Book <span id="bookisbn"></span>
-                        </h1>
-                    </div>
-                    <div class="modal-body">
-                        <form  method="POST" action="">
-                            <div class="form-group">
-                                <label class="control-label">first name</label>
-                                <div>
-                                    <input type="text" class="form-control input-lg" name="userfirstname" value="" id="userfirstname"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">last name</label>
-                                <input type="text" class="form-control" name="lastname">
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <button type="submit" class="btn btn-success">SAVE</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
-
-<!-- <table>
-        <tr>
-            <td>NAME</td><td>Joining Date</td><td>Salary</td><td>SSN</td><td></td>
-        </tr>
-        <c:forEach items="${employees}" var="employee">
-            <tr>
-            <td>${employee.name}</td>
-            <td>${employee.joiningDate}</td>
-            <td>${employee.salary}</td>
-            <td><a href="<c:url value='/edit-${employee.ssn}-employee' />">${employee.ssn}</a></td>
-            <td><a href="<c:url value='/delete-${employee.ssn}-employee' />">delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>-->
-
     </body>
 </html>

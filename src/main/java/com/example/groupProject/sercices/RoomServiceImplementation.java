@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RoomServiceImplementation {
+public class RoomServiceImplementation implements RoomService {
 
     @Autowired
     RoomRepository rr;

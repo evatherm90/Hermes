@@ -8,6 +8,7 @@ package com.example.groupProject.controllers;
 import com.example.groupProject.model.User;
 import com.example.groupProject.sercices.UserService;
 import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,47 +40,40 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    //method to show home page
     @GetMapping("/")
     public String homePage() {
-        return "homePage";
+        return "index";
     }
 
-    //method to show register user form
-    @GetMapping("/showregistrationform")
-    public String showRegistrationForm(ModelMap m) {
-        User u = new User();
-        m.addAttribute("myuser", u);
+    @RequestMapping(value = {"/newuser"}, method = RequestMethod.GET)
+    public String newUser(ModelMap m) {
+        User user = new User();
+        m.addAttribute("user", user);
+        m.addAttribute("edit", false);
         return "RegisterForm";
     }
 
-    @PostMapping("/register")
-    public String registerUser(@ModelAttribute("myuser") User u, BindingResult bindingResult, ModelMap mm) {
-        //if (bindingResult.hasErrors()) {
-
-        //return "registerUserForm";
-        // }
-        //else{
-//        String password = u.getUserpassword();
-//        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-//        u.setUserpassword(hashed);
-        userService.registerUser(u);
-        return "index";
-        // }
-    }//prepei na peraso kai rolo sto userrole!!!!!!!!!!
+    @RequestMapping(value = {"/newuser"}, method = RequestMethod.POST)
+    public String saveUser(@Valid User user, BindingResult result,
+            ModelMap model) {
+        if (result.hasErrors()) {
+            return "RegisterForm";
+        }
+        userService.updateUser(user);
+        model.addAttribute("success", "User " + user.getUsername() + " registered successfully");
+        return "success";
+    }
 
     @GetMapping("/getuserbyid/{userId}")
-    @ResponseBody
-    public User findUserById(@PathVariable("userId") String id) {
+    public Optional<User> findUserById(@PathVariable("userId") String id) {
         return userService.findById(id);
     }
 
-    //method to get all registered users
-    
-    @GetMapping("/usersTable")
-    public Iterable<User> getUsers() {
-
-        return userService.getUsers();
+    @RequestMapping(value = {"/listofusers"}, method = RequestMethod.GET)
+    public String getUsers(ModelMap model) {
+        Iterable<User> users = userService.getUsers();
+        model.addAttribute("users", users);
+        return "usersTable";
     }
 
     @GetMapping("/showloginform")
@@ -88,35 +83,31 @@ public class UserController {
 
     @PostMapping("/login")
     public String loginUser() {
-//        getUserByPassword
-//                if (username.equals(un) && userpassword.equals(up)){
-//                    get user connected}
-//                else
-//                    return "wrong username or password";
-
-        return "index";
+        return "welcomepage";
     }
 
-    @GetMapping("/deleteuserbyid/{userId}")
-    public String deleteUser(@PathVariable("userId") String id) {
-        userService.deleteUser(id);
-        return "homePage";
-    }//tha prepei na ton diagrapso apo pantoy!!!!!!!!!!!!!!!!
-    
-    @PostMapping(path="/update")
-public String updateUser(@ModelAttribute("myuser") User u, ModelMap mm) {//@Valid @RequestBody User user
-    userService.updateUser(u);
-    return "homePage";
+    @RequestMapping(value = {"/edit-{userid}-user"}, method = RequestMethod.GET)
+    public String editUser(@PathVariable String userid, ModelMap model) {
+        User user = userService.findById(userid).get();
+        model.addAttribute("user", user);
+        model.addAttribute("edit", true);
+        return "RegisterForm";
+    }
+
+    @RequestMapping(value = {"/edit-{userid}-user"}, method = RequestMethod.POST)
+    public String updateUser(@Valid User user, BindingResult result,
+            ModelMap model, @PathVariable String userid) {
+        if (result.hasErrors()) {
+            return "RegisterForm";
+        }
+        userService.updateUser(user);
+        model.addAttribute("success", "User " + user.getUsername() + " updated successfully");
+        return "success";
+    }
+
+    @RequestMapping(value = {"/delete-{userid}-user"}, method = RequestMethod.GET)
+    public String deleteUser(@PathVariable String userid) {
+        userService.deleteUser(userid);
+        return "redirect:/listofusers";
+    }
 }
-
-
-//@RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
-//    public String listEmployees(ModelMap model) {
-// 
-//        List<Employee> employees = service.findAllEmployees();
-//        model.addAttribute("employees", employees);
-//        //ftiaxnei (metabliti employees gia to jsp, h lista employees poy ftiaxno apo pano)
-//        return "allemployees";
-//    }
-
-    }

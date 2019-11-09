@@ -1,10 +1,11 @@
 <%-- 
-    Document   : index
-    Created on : Nov 8, 2019, 10:08:12 PM
+    Document   : success
+    Created on : Nov 8, 2019, 11:25:07 PM
     Author     : antonis
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        message : ${success}
+        <br/>
+        <br/>
+        Go back to <a href="<c:url value='/listofusers' />">List of All Users</a>
+
     </body>
 </html>
