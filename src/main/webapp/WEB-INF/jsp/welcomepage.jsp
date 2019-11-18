@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Welcome!</h1>
+       <a href="chatindex.jsp">Join our chat!</a> 
     </body>
 </html>
