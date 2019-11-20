@@ -18,7 +18,7 @@
         <br/>
         <a href="<c:url value='/newuser' />">register</a>
         <br/>
-        <a href="<c:url value='/joinchat'>"  Join our chat!</a>
+        <a href="<c:url value='/joinchat'/>" > Join our chat!</a>
         
     </body>
 </html>

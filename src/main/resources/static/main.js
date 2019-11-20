@@ -22,22 +22,26 @@ var colors = [
 ];
 
 function connect(event) {
+    event.preventDefault();
+    console.log("connect");
     username = document.querySelector('#name').value.trim();
 
     if(username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
 
-        var socket = new SockJS('/ws');
+        var socket = new SockJS('/groupProject/ws');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
     }
-    event.preventDefault();
+    
 }
 
 
 function onConnected() {
+ 
+     console.log("Connected");
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
 
@@ -45,14 +49,19 @@ function onConnected() {
     stompClient.send("/app/chat.addUser",
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
-    )
+    );
 
     connectingElement.classList.add('hidden');
+    connectingElement.textContent = 'Connected!';
+    connectingElement.style.color = 'red';
+    
+   
 }
 
 
 function onError(error) {
-    connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
+    
+    connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!'+error;
     connectingElement.style.color = 'red';
 }
 
@@ -75,8 +84,9 @@ function sendMessage(event) {
 
 
 function onMessageReceived(payload) {
+    
     var message = JSON.parse(payload.body);
-
+    console.log(message);
     var messageElement = document.createElement('li');
 
     if(message.type === 'JOIN') {
