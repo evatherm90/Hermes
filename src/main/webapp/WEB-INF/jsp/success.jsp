@@ -16,7 +16,8 @@
         message : ${success}
         <br/>
         <br/>
-        Go back to <a href="<c:url value='/listofusers' />">List of All Users</a>
+         To continue: <a href="<c:url value='/login' />">Login</a>
+<!--        Go back to <a href="c:url value='/listofusers' />">List of All Users</a>-->
 
     </body>
 </html>
