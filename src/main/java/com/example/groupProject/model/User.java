@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -87,7 +88,7 @@ public class User implements Serializable {
     @JoinTable(name = "userrole", joinColumns = {
         @JoinColumn(name = "userid", referencedColumnName = "userid")}, inverseJoinColumns = {
         @JoinColumn(name = "roleid", referencedColumnName = "roleid")})
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnore
     private Collection<Role> roleCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "senderid")
@@ -228,6 +229,10 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "com.example.groupProject.model.User[ userid=" + userid + " ]";
+    }
+
+    public String getUserPass() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

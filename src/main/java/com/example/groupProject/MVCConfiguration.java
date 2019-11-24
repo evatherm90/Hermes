@@ -16,8 +16,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  */
 public class MVCConfiguration extends WebMvcConfigurerAdapter{
     
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
+    public void configureViewResolver(ViewResolverRegistry registry) {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("/VIEW/jsp/");//ayto exei protereothta enanti toy properties
         resolver.setPrefix(".jsp");

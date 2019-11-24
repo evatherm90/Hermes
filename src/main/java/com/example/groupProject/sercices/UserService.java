@@ -7,7 +7,6 @@ package com.example.groupProject.sercices;
 
 import com.example.groupProject.model.User;
 import java.util.Optional;
-
 /**
  *
  * @author antonis
@@ -23,5 +22,8 @@ public interface UserService {
     public void deleteUser(String id);
     
     public void updateUser(User u);
+    
+    public String getPrincipal();
+     
         
 }

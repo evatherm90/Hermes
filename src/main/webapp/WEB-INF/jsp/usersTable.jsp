@@ -34,6 +34,7 @@
                     <th>last name</th>
                     <th>email</th>
                     <th>username</th>
+                     <th>role</th>
                     <th>edit</th>
                     <th>delete</th>
                 </tr>
@@ -44,6 +45,7 @@
                     <td><c:out value="${user.userlastname}" /></td>
                     <td><c:out value="${user.useremail}" /></td>
                     <td><c:out value="${user.username}" /></td>
+                    <td><c:out value="${user.getRoleCollection().toString()}" /></td>
                     <td>
                     <td><a href="<c:url value='/edit-${user.userid}-user' />">edit</a></td>
                     <td><a href="<c:url value='/delete-${user.userid}-user' />">delete</a></td>

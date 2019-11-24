@@ -10,8 +10,8 @@
         <meta charset="utf-8">
         <title>Log in with your account</title>
 
-        <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-        <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+        <!--<link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">-->
+        <!--<link href="${contextPath}/resources/css/common.css" rel="stylesheet">-->
     </head>
 
     <body>
@@ -21,11 +21,11 @@
                 <h2 class="form-heading">Log in</h2>
 
                 <div class="form-group ${error != null ? 'has-error' : ''}">
-                    <span>${message}</span>
+                    <span>${error}</span>
                     <input name="username" type="text" class="form-control" placeholder="Username"
                            autofocus="true"/>
                     <input name="password" type="password" class="form-control" placeholder="Password"/>
-                    <span>${error}</span>
+                    <span>${errorMessge}</span>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
@@ -37,6 +37,6 @@
                      <a href="<c:url value='/newuser' />">register</a>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+        <!--<script src="${contextPath}/resources/js/bootstrap.min.js"></script>-->
     </body>
 </html>

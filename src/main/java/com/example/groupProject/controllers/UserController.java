@@ -7,35 +7,23 @@ package com.example.groupProject.controllers;
 
 import com.example.groupProject.model.User;
 import com.example.groupProject.sercices.UserService;
-import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.MimeTypeUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
@@ -51,11 +39,12 @@ public class UserController {
     public String homePage() {
         return "index";
     }
-    
+
     @GetMapping("/joinchat")
-            public String joinChat(){
-                return "chatindex";
-            }
+    public String joinChat(Model model) {
+        model.addAttribute("user", userService.getPrincipal());
+        return "chatindex";
+    }
 
     @RequestMapping(value = {"/newuser"}, method = RequestMethod.GET)
     public String newUser(ModelMap m) {
@@ -71,45 +60,37 @@ public class UserController {
         if (result.hasErrors()) {
             return "RegisterForm";
         }
-        userService.updateUser(user);
+
+        userService.registerUser(user);
         model.addAttribute("success", "User " + user.getUsername() + " registered successfully");
         return "success";
     }
 
-    
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public String showLoginPage(Model m){
-//        User user = new User();
-//        m.addAttribute("user", user);
-//        m.addAttribute("edit", false);
-//        return "RegisterForm";
-//    }
-//    
-//    
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage(@RequestParam(value = "error", required = false) String error, 
-                            @RequestParam(value = "logout", required = false) String logout,
-                            Model model) {
+    public String loginPage(@RequestParam(value = "error", required = false) String error,
+            @RequestParam(value = "logout", required = false) String logout,
+            Model model) {
         String errorMessge = null;
-        if(error != null) {
+        if (error != null) {
             errorMessge = "Username or Password is incorrect !!";
         }
-        if(logout != null) {
+        if (logout != null) {
             errorMessge = "You have been successfully logged out !!";
         }
         model.addAttribute("errorMessge", errorMessge);
         return "login";
     }
-  
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){    
+        if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
-            
+
         }
         return "redirect:/login?logout=true";
     }
+
     @RequestMapping(value = {"/edit-{userid}-user"}, method = RequestMethod.GET)
     public String editUser(@PathVariable String userid, ModelMap model) {
         User user = userService.findById(userid).get();
@@ -134,7 +115,7 @@ public class UserController {
         userService.deleteUser(userid);
         return "redirect:/listofusers";
     }
-    
+
     @GetMapping("/getuserbyid/{userId}")
     public Optional<User> findUserById(@PathVariable("userId") String id) {
         return userService.findById(id);
@@ -147,17 +128,16 @@ public class UserController {
         return "usersTable";
     }
 
-//    @GetMapping("/login")
-//    public String showLoginForm() {
-//        return "LoginForm";
-//    }
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String adminPage(ModelMap model) {
+        model.addAttribute("user", userService.getPrincipal());
+        return "admin";
+    }
 
-//    @PostMapping("/login")
-//    public String loginUser() {
-//        return "welcomepage";x
-//    }
-    
-    
-    
-    
+    @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
+    public String accessDeniedPage(ModelMap model) {
+        model.addAttribute("user", userService.getPrincipal());
+        return "deny";
+    }
+
 }

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Nov 8, 2019, 10:08:12 PM
+    Document   : admin
+    Created on : Nov 21, 2019, 11:56:23 PM
     Author     : antonis
 --%>
 
@@ -11,13 +11,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <a href="<c:url value='/joinchat'/>" > Join our chat!</a>
-        <br/>
-        <a href="<c:url value='/logout' />">logout</a>
-        
+        <h1>Hello admin!</h1>
+        <a href="<c:url value='/listofusers' />">see users</a>
     </body>
 </html>
