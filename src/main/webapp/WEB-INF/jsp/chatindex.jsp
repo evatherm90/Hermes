@@ -23,6 +23,7 @@
                     <div class="form-group">
                         <!--                <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />-->
                         <input type="hidden" id="name" value='${user}'/>
+                        <input type="text" id="channelName" placeholder="Channel Name" />
                     </div>
                     <div class="form-group">
                         <button type="submit" class="accent username-submit">Start Chatting</button>
@@ -34,7 +35,7 @@
         <div id="chat-page" class="hidden">
             <div class="chat-container">
                 <div class="chat-header">
-                    <h2>Spring WebSocket Chat Demo</h2>
+                    <h2 id="channame">Channel</h2>
                 </div>
                 <div class="connecting">
                     Connecting...

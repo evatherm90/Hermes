@@ -15,7 +15,7 @@ var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
-
+var channelName = null;
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
@@ -25,7 +25,8 @@ function connect(event) {
     event.preventDefault();
     console.log("connect");
     username = document.querySelector('#name').value.trim();
-
+    channelName = document.querySelector('#channelName').value.trim();
+    console.log(channelName);
     if(username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
@@ -40,13 +41,14 @@ function connect(event) {
 
 
 function onConnected() {
- 
+ channelName = document.querySelector('#channelName').value.trim();
+ document.getElementById("channame").innerHTML = channelName; 
      console.log("Connected");
     // Subscribe to the Public Topic
-    stompClient.subscribe('/topic/public', onMessageReceived);
+    stompClient.subscribe('/topic/'+channelName, onMessageReceived);
 
     // Tell your username to the server
-    stompClient.send("/app/chat.addUser",
+    stompClient.send("/app/chat.addUser/"+channelName,
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     );
@@ -76,10 +78,11 @@ function sendMessage(event) {
             type: 'CHAT'
         };
 
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        stompClient.send("/app/chat.sendMessage/"+channelName, {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();
+    console.log("send to app");
 }
 
 
@@ -132,6 +135,6 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
+usernameForm.addEventListener('submit', connect, true);
+messageForm.addEventListener('submit', sendMessage, true);
 

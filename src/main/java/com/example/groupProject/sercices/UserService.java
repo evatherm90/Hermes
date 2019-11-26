@@ -24,6 +24,10 @@ public interface UserService {
     public void updateUser(User u);
     
     public String getPrincipal();
+    
+    public String takeMyMoney(String username, int price);
+    
+    public int getMyBalance(String username);
      
         
 }

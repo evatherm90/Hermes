@@ -5,8 +5,12 @@
  */
 package com.example.groupProject.sercices;
 
+import com.example.groupProject.model.Role;
 import com.example.groupProject.model.User;
+import com.example.groupProject.repositories.RoleRepository;
 import com.example.groupProject.repositories.UserRepository;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +24,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImplementation implements UserService {
+// @ManyToMany(fetch = FetchType.EAGER)
 
     @Autowired
     UserRepository ur;
+
+    @Autowired
+    RoleRepository rr;
 
     @Override
     public Iterable<User> getUsers() {
@@ -42,7 +50,11 @@ public class UserServiceImplementation implements UserService {
         String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         u.setUserpassword(hashed);
         System.out.println(u.getUserpassword());
+        Collection<Role> defaultRole = new ArrayList<>();
+        defaultRole.add(rr.findRoleByRolename("Free User"));
+        u.setRoleCollection(defaultRole);
         ur.save(u);
+
     }
 
     @Override
@@ -68,4 +80,30 @@ public class UserServiceImplementation implements UserService {
         }
         return userName;
     }
+
+    @Override
+    public String takeMyMoney(String username, int price) {
+
+        User u = ur.findUserByUsername(username);
+        int balance = u.getWallet();
+        if (balance >= price && price>0) {
+            balance = balance - price;
+            u.setWallet(balance);
+            u.getRoleCollection().clear();
+            u.getRoleCollection().add(rr.findRoleByRolename("Premium User"));
+            ur.save(u);
+            
+            return "succesfull transaction";
+        } else{
+        return "transaction failed, low balance";
+        }
+
+    }
+
+    @Override
+    public int getMyBalance(String username) {
+        int balance = ur.findUserByUsername(username).getWallet();
+        return balance;
+    }
+
 }

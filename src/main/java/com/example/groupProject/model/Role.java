@@ -108,7 +108,7 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.groupProject.model.Role[ roleid=" + roleid + " ]";
+        return "roleid=" + roleid;
     }
     
 }

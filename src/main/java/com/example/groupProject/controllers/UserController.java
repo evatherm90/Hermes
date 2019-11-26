@@ -140,4 +140,19 @@ public class UserController {
         return "deny";
     }
 
+    @RequestMapping(value = "/payment", method = RequestMethod.GET)
+    public String takeMyMoney(@RequestParam(value = "price", required = true) int price) {
+        String username = userService.getPrincipal();
+        String transactionMessage = userService.takeMyMoney(username, price);
+        System.out.println(transactionMessage);
+        return "nomoney nohoney";
+    }
+
+    @RequestMapping(value = "/balance", method = RequestMethod.GET)
+    public String getMyBalance() {
+        String username = userService.getPrincipal();
+        int balance = userService.getMyBalance(username);
+        System.out.println(balance);
+        return "success";
+    }
 }

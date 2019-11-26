@@ -27,6 +27,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  *
@@ -46,12 +47,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByIsactive", query = "SELECT u FROM User u WHERE u.isactive = :isactive")})
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "userid")
-    private Integer userid;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -77,8 +72,21 @@ public class User implements Serializable {
     @Size(min = 1, max = 60)
     @Column(name = "userpassword")
     private String userpassword;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name="wallet")
+    private int wallet=100;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "userid")
+    private Integer userid;
     @Column(name = "isactive")
     private Boolean isactive;
+    
+    
     @JoinTable(name = "member", joinColumns = {
         @JoinColumn(name = "memberid", referencedColumnName = "userid")}, inverseJoinColumns = {
         @JoinColumn(name = "channelid", referencedColumnName = "roomid")})
@@ -112,6 +120,7 @@ public class User implements Serializable {
         this.useremail = useremail;
         this.username = username;
         this.userpassword = userpassword;
+        //this.wallet=100;
     }
 
     public Integer getUserid() {
@@ -122,45 +131,6 @@ public class User implements Serializable {
         this.userid = userid;
     }
 
-    public String getUserfirstname() {
-        return userfirstname;
-    }
-
-    public void setUserfirstname(String userfirstname) {
-        this.userfirstname = userfirstname;
-    }
-
-    public String getUserlastname() {
-        return userlastname;
-    }
-
-    public void setUserlastname(String userlastname) {
-        this.userlastname = userlastname;
-    }
-
-    public String getUseremail() {
-        return useremail;
-    }
-
-    public void setUseremail(String useremail) {
-        this.useremail = useremail;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getUserpassword() {
-        return userpassword;
-    }
-
-    public void setUserpassword(String userpassword) {
-        this.userpassword = userpassword;
-    }
 
     public Boolean getIsactive() {
         return isactive;
@@ -228,11 +198,59 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.groupProject.model.User[ userid=" + userid + " ]";
+        return " userid=" + userid;
     }
 
     public String getUserPass() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getUserfirstname() {
+        return userfirstname;
+    }
+
+    public void setUserfirstname(String userfirstname) {
+        this.userfirstname = userfirstname;
+    }
+
+    public String getUserlastname() {
+        return userlastname;
+    }
+
+    public void setUserlastname(String userlastname) {
+        this.userlastname = userlastname;
+    }
+
+    public String getUseremail() {
+        return useremail;
+    }
+
+    public void setUseremail(String useremail) {
+        this.useremail = useremail;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUserpassword() {
+        return userpassword;
+    }
+
+    public void setUserpassword(String userpassword) {
+        this.userpassword = userpassword;
+    }
+
+    public int getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(int wallet) {
+        this.wallet = wallet;
     }
 
 }
