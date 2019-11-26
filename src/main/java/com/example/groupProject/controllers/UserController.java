@@ -137,7 +137,7 @@ public class UserController {
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("user", userService.getPrincipal());
-        return "deny";
+        return "accessDenied";
     }
 
     @RequestMapping(value = "/payment", method = RequestMethod.GET)

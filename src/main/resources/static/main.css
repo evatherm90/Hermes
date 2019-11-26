@@ -7,17 +7,22 @@
 html,body {
     height: 100%;
     overflow: hidden;
+    background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    font-family: 'Numans', sans-serif;
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-weight: 400;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.58;
-    color: #333;
-    background-color: #f4f4f4;
+    /*    font-weight: 400;*/
+    font-family: 'Numans', sans-serif;
+    /*    font-size: 1rem;*/
+    /*    line-height: 1.58;*/
+    color: white;
+    // background-color: #f4f4f4;
     height: 100%;
 }
 
@@ -27,7 +32,7 @@ body:before {
     position: absolute;
     top: 0;
     left: 0;
-    background: #128ff2;
+    //background: rgb(0, 162, 255);
     content: "";
     z-index: 0;
 }
@@ -45,7 +50,7 @@ body:before {
 .form-control {
     width: 100%;
     min-height: 38px;
-    font-size: 15px;
+    // font-size: 15px;
     border: 1px solid #c8c8c8;
 }
 
@@ -58,14 +63,14 @@ input {
     outline: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/*h1, h2, h3, h4, h5, h6 {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 h1 {
     font-size: 1.7em;
-}
+}*/
 
 a {
     color: #128ff2;
@@ -93,15 +98,19 @@ button.default {
 }
 
 button.primary {
-    background-color: #128ff2;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-    color: #fff;
+    /*    background-color: #128ff2;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
+        color: #fff;*/
+    color:black;
+    background-color: rgb(0, 162, 255);
 }
 
 button.accent {
-    background-color: #ff4743;
+/*    background-color: #ff4743;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-    color: #fff;
+    color: #fff;*/
+color:black;
+background-color:rgb(0, 162, 255);
 }
 
 #username-page {
@@ -114,18 +123,23 @@ button.accent {
     border-radius: 2px;
     width: 100%;
     max-width: 500px;
-    display: inline-block;
+    // display: inline-block;
     margin-top: 42px;
     vertical-align: middle;
     position: relative;
     padding: 35px 55px 35px;
     min-height: 250px;
-    position: absolute;
+    //position: absolute;
     top: 50%;
     left: 0;
     right: 0;
     margin: 0 auto;
     margin-top: -160px;
+    height: 410px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
 }
 
 .username-page-container .username-submit {
@@ -142,7 +156,7 @@ button.accent {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #fff;
+    background-color: rgba(0,0,0,0.5) !important;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     margin-top: 30px;
     height: calc(100% - 60px);
@@ -152,7 +166,7 @@ button.accent {
 
 #chat-page ul {
     list-style-type: none;
-    background-color: #FFF;
+    background-color: rgba(0,0,0,0.5) !important;
     margin: 0;
     overflow: auto;
     overflow-y: scroll;
@@ -210,12 +224,12 @@ button.accent {
 }
 
 #chat-page .chat-message span {
-    color: #333;
+    color: rgb(0, 162, 255);
     font-weight: 600;
 }
 
 #chat-page .chat-message p {
-    color: #43464b;
+    color: whitesmoke;
 }
 
 #messageForm .input-group input {
@@ -296,3 +310,4 @@ button.accent {
         font-size: 1.1em;
     }
 }
+

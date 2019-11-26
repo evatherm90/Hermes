@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <title>Spring Boot WebSocket Chat Application | CalliCoder</title>
+        <title>Hermes chatroom</title>
         <link rel="stylesheet" href="main.css" />
     </head>
     <body>
@@ -18,7 +18,7 @@
 
         <div id="username-page">
             <div class="username-page-container">
-                <h1 class="title">${user}</h1>
+                <h3 class="title">${user}</h3>
                 <form id="usernameForm" name="usernameForm">
                     <div class="form-group">
                         <!--                <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />-->

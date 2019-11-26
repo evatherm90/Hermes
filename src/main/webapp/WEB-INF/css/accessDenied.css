@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 26, 2019, 4:09:06 PM
+    Author     : antonis
+*/
+
+@import url("https://fonts.googleapis.com/css?family=Bungee");
+
+body {
+    background: rgba(0,0,0,0.5);
+    color: white;
+    font-family: "Bungee", cursive;
+    margin-top: 50px;
+    text-align: center;
+}
+a {
+    color: rgb(0, 162, 255);
+    text-decoration: none;
+}
+a:hover {
+    color: white;
+}
+svg {
+    width: 50vw;
+}
+.lightblue {
+    fill: rgb(0, 162, 255);
+}
+.eye {
+    cx: calc(115px + 30px * var(--mouse-x));
+    cy: calc(50px + 30px * var(--mouse-y));
+}
+#eye-wrap {
+    overflow: hidden;
+}
+.error-text {
+    font-size: 120px;
+}
+.alarm {
+    animation: alarmOn 0.5s infinite;
+}
+
+@keyframes alarmOn {
+    to {
+        fill: darkred;
+    }
+}
