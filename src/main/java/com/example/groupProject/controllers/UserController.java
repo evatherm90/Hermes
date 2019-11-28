@@ -59,6 +59,13 @@ public class UserController {
         model.addAttribute("user", userService.getPrincipal());
         return "onetoonechatindex";
     }
+     
+     @GetMapping("/privatechat-{username}")
+     public String messageAFriend(@PathVariable String username, ModelMap model){
+     model.addAttribute("channelName", username);
+     model.addAttribute("user", userService.getPrincipal());
+     return "onetoonechatindex";
+     }
     
 
     @RequestMapping(value = {"/newuser"}, method = RequestMethod.GET)

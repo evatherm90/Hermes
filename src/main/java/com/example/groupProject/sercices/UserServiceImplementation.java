@@ -7,8 +7,10 @@ package com.example.groupProject.sercices;
 
 import com.example.groupProject.model.Role;
 import com.example.groupProject.model.User;
+import com.example.groupProject.model.Userprofile;
 import com.example.groupProject.repositories.RoleRepository;
 import com.example.groupProject.repositories.UserRepository;
+import com.example.groupProject.repositories.UserprofileRepository;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
@@ -31,6 +33,9 @@ public class UserServiceImplementation implements UserService {
 
     @Autowired
     RoleRepository rr;
+    
+     @Autowired
+    UserprofileRepository upr;
 
     @Override
     public Iterable<User> getUsers() {
@@ -59,6 +64,8 @@ public class UserServiceImplementation implements UserService {
             defaultRole.add(rr.findRoleByRolename("Free User"));
             u.setRoleCollection(defaultRole);
             ur.save(u);
+            Userprofile up=new Userprofile(u.getUsername(), "undefined", "undefined");
+            upr.save(up);
             return "success";
         }
     }

@@ -1,6 +1,6 @@
 <%-- 
     Document   : accountsettings
-    Created on : Nov 28, 2019, 3:57:48 AM
+    Created on : Nov 28, 2019, 3:57:48 AM<td><a href="<c:out value='/privatechat-${userr.username}' />" />${userr.username}</a></td>
     Author     : antonis
 --%>
 
@@ -34,20 +34,36 @@
     <body>
         <div class="card" id="accountsettings" >
             <div class="card-header">
-                <h3>${user} account settings</h3>
+                <h3>${user.username} account settings</h3>
             </div>
+             <div class="card-body">
             <ul style="color:white;">
-                <li>username: </li>
-                <li>job: </li>
-                <li>status: </li>
-                <li>email: </li>
-                <li>contacts: </li>
-                <li>channels: </li>
+                <li>My username: ${userprofile.username}</li>
+                <li>My job: ${userprofile.job} </li>
+                <li>My status: ${userprofile.status} </li>
+                <li>My balance: ${user.wallet} points</li>
+                <li>My email: ${user.useremail}</li>
+                <li>My channels: </li>
             </ul>
             <div class="form-group">
-                <a href="<c:url value='/editUserprofile' />" class="btn float-right login_btn">Edit</a>  
+                <a href="<c:url value='/editUserprofile' />" class="btn float-right login_btn">Edit</a>
             </div>
-
+            
+            <table>
+            <thead>
+                <tr>
+                    <th style="color:white;">My Contacts:</th>    
+                </tr>
+            </thead>
+            <c:forEach items="${userrs}" var="userr">
+                <tr style="color:white;">
+                    <td><a href="<c:url value='/privatechat-${userr.username}'/>" >Message ${userr.username} </a></td>
+                    
+                </tr>
+            </c:forEach>
+        </table>
+           
+             </div>
         </div>
     </body>
 </html>

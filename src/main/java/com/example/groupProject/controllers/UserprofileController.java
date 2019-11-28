@@ -7,6 +7,7 @@ package com.example.groupProject.controllers;
 
 import com.example.groupProject.model.User;
 import com.example.groupProject.model.Userprofile;
+import com.example.groupProject.repositories.UserRepository;
 import com.example.groupProject.sercices.UserService;
 import com.example.groupProject.sercices.UserprofileService;
 import javax.validation.Valid;
@@ -31,12 +32,20 @@ public class UserprofileController {
      
      @Autowired
      UserprofileService ups;
+     
+     @Autowired
+    UserRepository ur;
     
     @GetMapping("/accountsettings")
-    public String getUserAccountSettings(Model model) {
-        model.addAttribute("user", userService.getPrincipal());
-        Userprofile up=ups.getUserprofile(userService.getPrincipal());
-        model.addAttribute("userprofile", ups);
+    public String getUserAccountSettings(ModelMap model) {
+//        model.addAttribute("user", userService.getPrincipal());
+//        Userprofile up=ups.getUserprofile(userService.getPrincipal());
+        Userprofile userprofile=ups.getUserprofile(userService.getPrincipal());
+        model.addAttribute("userprofile", userprofile);
+        User user=ur.findUserByUsername(userService.getPrincipal());
+         model.addAttribute("user", user);
+         Iterable<User> userrs = userService.getUsers();
+        model.addAttribute("userrs", userrs);
         return "accountsettings";
     }
     

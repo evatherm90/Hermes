@@ -1,6 +1,6 @@
 <%-- 
-    Document   : onetoonechatindex
-    Created on : Nov 27, 2019, 7:25:17 PM
+    Document   : chatindex
+    Created on : Nov 15, 2019, 9:18:10 PM
     Author     : antonis
 --%>
 
@@ -49,7 +49,7 @@
                     <div class="form-group">
                         <!--                <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />-->
                         <input type="hidden" id="name" value='${user}'/>
-                        <input type="text" id="sendTo" placeholder="Send To" />
+                        <input type="hidden" id="channelName" value='${channelName}' />
                     </div>
                     <div class="form-group">
                         <button type="submit" class="accent username-submit">Start Chatting</button>
@@ -61,7 +61,7 @@
         <div id="chat-page" class="hidden">
             <div class="chat-container">
                 <div class="chat-header">
-                    <h2 id="sendTo">SendTo</h2>
+                    <h2 id="channame">Channel</h2>
                 </div>
                 <div class="connecting">
                     Connecting...
@@ -82,6 +82,6 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-        <script src="onetoonechatindex.js"></script>
+        <script src="main.js"></script>
     </body>
 </html>

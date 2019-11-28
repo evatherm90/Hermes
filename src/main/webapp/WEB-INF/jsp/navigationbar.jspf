@@ -1,0 +1,29 @@
+<%-- any content can be specified here e.g.: --%>
+<%--<%@ page pageEncoding="UTF-8" %>--%>
+<!--<style>
+    section {
+    display: flex;
+    justify-content: center;
+}
+ 
+nav {
+    background-color: rgba(253, 253, 253, 0.78);
+    width: 80vw;
+    height: 10vh;
+    display: flex;
+    align-items: right;
+    justify-content: center;
+    color: white;
+}
+</style>-->
+<section>
+<nav id="nav">
+    <a href="<c:url value='/accountsettings'/>" >${user}</a>
+    <a href="<c:url value='/joinhermespublicchat'/>" >Join our Chat</a>
+    <a href="<c:url value='/joinchat'/>" >Create your Channel</a>
+    <a href="<c:url value='/premium'/>" >Become Premium User</a>
+    <a href="<c:url value='/admin' />">Admin Dashboard</a>
+    <a href="<c:url value='/logout' />">logout</a>
+
+</nav>
+</section>

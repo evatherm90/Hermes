@@ -3,7 +3,7 @@
     Created on : Nov 15, 2019, 9:18:10 PM
     Author     : antonis
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,33 +15,13 @@
         <noscript>
         <h2>Sorry! Your browser doesn't support Javascript</h2>
         </noscript>
-        <div>
-            <header id="header">
-
-        <div class="inner">
-
-            <nav id="nav">
-
-                <a href="<c:url value='/admin' />">Admin Dashboard</a>
-                
-                 <a href="<c:url value='/joinhermespublicchat'/>" >Join our Chat</a>
-
-                <a href="<c:url value='/joinchat'/>" >Create your Channel</a>
-
-                <a href="<c:url value='/payment'/>" >Become Premium User</a>
-                
-                
-
-                <a href="<c:url value='/logout' />">logout</a>
-
-            </nav>
-
-            <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-
-        </div>
-
-    </header>
-        </div>
+        <jsp:include page="navigationbar.jsp"/>
+<!--        <a href="/accountsettings" >${user}</a>
+    <a href="<c:url value='/joinhermespublicchat'/>" >Join our Chat</a>
+    <a href="<c:url value='/joinchat'/>" >Create your Channel</a>
+    <a href="<c:url value='/premium'/>" >Become Premium User</a>
+    <a href="<c:url value='/admin' />">Admin Dashboard</a>
+    <a href="<c:url value='/logout' />">logout</a>-->
         <div id="username-page">
             <div class="username-page-container">
                 <h3 class="title">Welcome ${user}</h3>
