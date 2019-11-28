@@ -128,7 +128,7 @@ public class UserController {
         }
         userService.updateUser(user);
         model.addAttribute("success", "User " + user.getUsername() + " updated successfully");
-        return "success";
+        return "successUserRegistration";
     }
 
     @RequestMapping(value = {"/delete-{userid}-user"}, method = RequestMethod.GET)
