@@ -26,9 +26,9 @@
             <div class="mouth happy"></div>
         </div>
         <div class="shadow scale"></div>
-        <div class="message"><h1 class="alert">Success!</h1>
-            <p>${success}</p></div>
-        <button class="button-box"><a href="<c:url value='/login' />"><h1 class="green">continue</h1></a></button>
+        <div class="message"><h1 class="alertsuccess">Success!</h1>
+            <p>${resultMessage}</p></div>
+        <button class="button-box"><a href="<c:url value='/' />"><h1 class="green">continue</h1></a></button>
     </div>
 </div>
 

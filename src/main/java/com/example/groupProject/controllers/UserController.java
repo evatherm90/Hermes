@@ -36,7 +36,8 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/")
-    public String homePage() {
+    public String homePage(ModelMap model) {
+      model.addAttribute("user",userService.getPrincipal());
         return "index";
     }
 
@@ -45,6 +46,20 @@ public class UserController {
         model.addAttribute("user", userService.getPrincipal());
         return "chatindex";
     }
+    
+    @GetMapping("/joinhermespublicchat")
+    public String joinHermesPublicChat(Model model) {
+        model.addAttribute("user", userService.getPrincipal());
+         model.addAttribute("channelName", "Hermes Public Chat");
+        return "hermespublicchatindex";
+    }
+    
+    @GetMapping("/messageafriend")
+     public String messageAFriend(Model model) {
+        model.addAttribute("user", userService.getPrincipal());
+        return "onetoonechatindex";
+    }
+    
 
     @RequestMapping(value = {"/newuser"}, method = RequestMethod.GET)
     public String newUser(ModelMap m) {
@@ -61,15 +76,20 @@ public class UserController {
             return "RegisterForm";
         }
 
-        userService.registerUser(user);
+        String registrationMessage=userService.registerUser(user);
+        if(registrationMessage.equals("success")){
         model.addAttribute("success", "User " + user.getUsername() + " registered successfully");
-        return "success";
+        return "successUserRegistration";
+        } else {
+            model.addAttribute("failure", "Username " + user.getUsername() + " is allready taken!");
+            return "usernameTaken";
+        }
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(@RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "logout", required = false) String logout,
-            Model model) {
+            ModelMap model) {
         String errorMessge = null;
         if (error != null) {
             errorMessge = "Username or Password is incorrect !!";
@@ -78,6 +98,7 @@ public class UserController {
             errorMessge = "You have been successfully logged out !!";
         }
         model.addAttribute("errorMessge", errorMessge);
+       
         return "login";
     }
 
@@ -140,19 +161,34 @@ public class UserController {
         return "accessDenied";
     }
 
-    @RequestMapping(value = "/payment", method = RequestMethod.GET)
-    public String takeMyMoney(@RequestParam(value = "price", required = true) int price) {
+    @RequestMapping(value = "/premium", method = RequestMethod.GET)
+    public String getPaymentProcedure(ModelMap model) {
         String username = userService.getPrincipal();
-        String transactionMessage = userService.takeMyMoney(username, price);
-        System.out.println(transactionMessage);
-        return "nomoney nohoney";
+        model.addAttribute("user",username);
+        return "payment";
+    }
+    
+    @RequestMapping(value = "/payment", method = RequestMethod.GET)//@RequestParam(value = "price", required = true) int price
+    public String takeMyMoney( Model model) {
+        String username = userService.getPrincipal();
+        int price=100;
+        String resultMessage = userService.takeMyMoney(username, price);
+        if(resultMessage.equals("success")){
+            model.addAttribute("resultMessage","You have been updated to PREMIUM");
+        return "successPayment";
+        }else{
+            model.addAttribute("resultMessage",resultMessage);
+        return "failPayment";
+        }
+        
+        
     }
 
     @RequestMapping(value = "/balance", method = RequestMethod.GET)
-    public String getMyBalance() {
+    public String getMyBalance(ModelMap model) {
         String username = userService.getPrincipal();
         int balance = userService.getMyBalance(username);
-        System.out.println(balance);
-        return "success";
+        model.addAttribute("balance",balance);
+        return "balance";
     }
 }

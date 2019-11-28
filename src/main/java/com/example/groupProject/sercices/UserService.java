@@ -17,7 +17,7 @@ public interface UserService {
     
     public Optional<User> findById(String id);
     
-    void registerUser(User u);
+    public String registerUser(User u);
 
     public void deleteUser(String id);
     

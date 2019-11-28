@@ -45,16 +45,22 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public void registerUser(User u) {
-        String password = u.getUserpassword();
-        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-        u.setUserpassword(hashed);
-        System.out.println(u.getUserpassword());
-        Collection<Role> defaultRole = new ArrayList<>();
-        defaultRole.add(rr.findRoleByRolename("Free User"));
-        u.setRoleCollection(defaultRole);
-        ur.save(u);
-
+    public String registerUser(User u) {
+        User thereIsUser = ur.findUserByUsername(u.getUsername());
+        if (thereIsUser != null) {
+            return "username taken";
+        }else{
+            
+            String password = u.getUserpassword();
+            String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+            u.setUserpassword(hashed);
+            System.out.println(u.getUserpassword());
+            Collection<Role> defaultRole = new ArrayList<>();
+            defaultRole.add(rr.findRoleByRolename("Free User"));
+            u.setRoleCollection(defaultRole);
+            ur.save(u);
+            return "success";
+        }
     }
 
     @Override
@@ -86,16 +92,16 @@ public class UserServiceImplementation implements UserService {
 
         User u = ur.findUserByUsername(username);
         int balance = u.getWallet();
-        if (balance >= price && price>0) {
+        if (balance >= price && price > 0) {
             balance = balance - price;
             u.setWallet(balance);
             u.getRoleCollection().clear();
             u.getRoleCollection().add(rr.findRoleByRolename("Premium User"));
             ur.save(u);
-            
-            return "succesfull transaction";
-        } else{
-        return "transaction failed, low balance";
+
+            return "success";
+        } else {
+            return "transaction failed, low balance";
         }
 
     }

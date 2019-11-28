@@ -5,10 +5,8 @@
  */
 package com.example.groupProject.repositories;
 
-import com.example.groupProject.model.User;
-import org.springframework.data.jpa.repository.Query;
+import com.example.groupProject.model.Userprofile;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,10 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author antonis
  */
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
-
-    User findUserByUsername(String name);
-    
-    
-    
+public interface UserprofileRepository extends CrudRepository<Userprofile, String>{
+    Userprofile findUserprofileByUsername(String username);
 }

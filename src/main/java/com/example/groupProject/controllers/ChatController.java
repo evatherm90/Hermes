@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ChatController {
     
+    @Autowired
+    SimpMessagingTemplate simpMessagingTemplate;
+    
 //    private SimpMessagingTemplate template;
 //
 //  @Autowired
@@ -33,6 +36,17 @@ public class ChatController {
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage,@DestinationVariable String channelName){
         return chatMessage;
     }
+    
+    
+    @SendTo("/user/queue/{sendTo}")
+    public ChatMessage sendPrivateMessage(@Payload ChatMessage chatMessage,@DestinationVariable String sendTo){
+    simpMessagingTemplate.convertAndSendToUser(sendTo, "/user/queue/", chatMessage);
+    return chatMessage;
+    }   
+//    user - the user that should receive the message.
+//    destination - the destination to send the message to.
+//    payload - the payload to send
+    
 
     @MessageMapping("/chat.addUser/{channelName}")
     @SendTo("/topic/{channelName}")

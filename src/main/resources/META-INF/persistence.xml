@@ -7,6 +7,7 @@
     <class>com.example.groupProject.model.Role</class>
     <class>com.example.groupProject.model.Directconversation</class>
     <class>com.example.groupProject.model.Message</class>
+    <class>com.example.groupProject.model.Userprofile</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://ra1.anystream.eu:5420/chat_management_db"/>

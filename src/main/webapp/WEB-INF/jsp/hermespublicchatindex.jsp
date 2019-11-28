@@ -1,6 +1,6 @@
 <%-- 
-    Document   : chatindex
-    Created on : Nov 15, 2019, 9:18:10 PM
+    Document   : hermespublicchatindex
+    Created on : Nov 27, 2019, 7:25:17 PM
     Author     : antonis
 --%>
 
@@ -15,6 +15,7 @@
         <noscript>
         <h2>Sorry! Your browser doesn't support Javascript</h2>
         </noscript>
+        
         <div>
             <header id="header">
 
@@ -42,6 +43,7 @@
 
     </header>
         </div>
+
         <div id="username-page">
             <div class="username-page-container">
                 <h3 class="title">Welcome ${user}</h3>
@@ -49,7 +51,7 @@
                     <div class="form-group">
                         <!--                <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />-->
                         <input type="hidden" id="name" value='${user}'/>
-                        <input type="text" id="channelName" placeholder="Channel Name" />
+                        <input type="hidden" id="channelName" value="${channelName}" />
                     </div>
                     <div class="form-group">
                         <button type="submit" class="accent username-submit">Start Chatting</button>
