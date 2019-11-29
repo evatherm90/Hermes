@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : Nov 8, 2019, 10:08:12 PM
-    Author     : antonis
+    Author     : antonis <a href="<c:url value='/messageafriend'/>" >Message a Friend</a>
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -38,19 +38,20 @@
 
             <nav id="nav">
 
-                <a href="<c:url value='/admin' />">Admin Dashboard</a>
-                
+                <a href="<c:url value='/accountsettings'/>" ><h3>${user}</h3></a>
+                 <a href="<c:url value='/' />">Home Page</a>
                  <a href="<c:url value='/joinhermespublicchat'/>" >Join our Chat</a>
 
                 <a href="<c:url value='/joinchat'/>" >Create your Channel</a>
                 
-                <a href="<c:url value='/messageafriend'/>" >Message a friend</a>
                 
-                 <a href="<c:url value='/accountsettings'/>" >${user}</a>
+                
+               
                  
                 <a href="<c:url value='/premium'/>" >Become Premium User</a>
+                 <a href="<c:url value='/admin' />">Admin Dashboard</a>
                 
-                <a href="<c:url value='/logout' />">logout</a>
+                <a href="<c:url value='/logout' />">Logout</a>
 
             </nav>
 
@@ -144,7 +145,7 @@
 
                     <div class="image round">
 
-                        <img src="../images/Akis.JPG" alt="Person 1" />
+                        <img src="/images/Akis.JPG" alt="Person 1" />
 
                     </div>
 
@@ -172,7 +173,7 @@
 
                     <div class="image round">
 
-                        <img src="../images/pic05.jpg" alt="Person 3" />
+                        <img src="/images/pic05.jpg" alt="Person 3" />
 
                     </div>
 

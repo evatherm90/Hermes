@@ -3,7 +3,7 @@
     Created on : Nov 27, 2019, 7:25:17 PM
     Author     : antonis
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,33 +15,35 @@
         <noscript>
         <h2>Sorry! Your browser doesn't support Javascript</h2>
         </noscript>
-        
+
         <div>
-            <header id="header">
+            <header id="header" >
 
-        <div class="inner">
+                <div class="inner">
 
-            <nav id="nav">
+                    <nav id="nav">
+                         <a href="<c:url value='/accountsettings'/>" ><h3>${user}</h3></a>
+                        <a href="<c:url value='/' />">Home Page</a>
+                        <a href="<c:url value='/joinhermespublicchat'/>" >Join our Chat</a>
 
-                <a href="<c:url value='/admin' />">Admin Dashboard</a>
-                
-                 <a href="<c:url value='/joinhermespublicchat'/>" >Join our Chat</a>
+                        <a href="<c:url value='/joinchat'/>" >Create your Channel</a>
 
-                <a href="<c:url value='/joinchat'/>" >Create your Channel</a>
 
-                <a href="<c:url value='/payment'/>" >Become Premium User</a>
-                
-                
 
-                <a href="<c:url value='/logout' />">logout</a>
+                        
 
-            </nav>
+                        <a href="<c:url value='/premium'/>" >Become Premium User</a>
+                        <a href="<c:url value='/admin' />">Admin Dashboard</a>
 
-            <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+                        <a href="<c:url value='/logout' />">Logout</a>
 
-        </div>
+                    </nav>
 
-    </header>
+                    <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+                </div>
+
+            </header>
         </div>
 
         <div id="username-page">

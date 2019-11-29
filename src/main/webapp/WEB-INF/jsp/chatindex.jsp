@@ -15,13 +15,35 @@
         <noscript>
         <h2>Sorry! Your browser doesn't support Javascript</h2>
         </noscript>
-        <jsp:include page="navigationbar.jsp"/>
-<!--        <a href="/accountsettings" >${user}</a>
-    <a href="<c:url value='/joinhermespublicchat'/>" >Join our Chat</a>
-    <a href="<c:url value='/joinchat'/>" >Create your Channel</a>
-    <a href="<c:url value='/premium'/>" >Become Premium User</a>
-    <a href="<c:url value='/admin' />">Admin Dashboard</a>
-    <a href="<c:url value='/logout' />">logout</a>-->
+        <header id="header">
+
+            <div class="inner">
+
+                <nav id="nav">
+
+                     <a href="<c:url value='/accountsettings'/>" ><h3>${user}</h3></a>
+                    <a href="<c:url value='/' />">Home Page</a>
+                    <a href="<c:url value='/joinhermespublicchat'/>" >Join our Chat</a>
+
+                    <a href="<c:url value='/joinchat'/>" >Create your Channel</a>
+
+
+
+                    
+
+                    <a href="<c:url value='/premium'/>" >Become Premium User</a>
+                    <a href="<c:url value='/admin' />">Admin Dashboard</a>
+
+                    <a href="<c:url value='/logout' />">Logout</a>
+
+                </nav>
+
+                <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+            </div>
+
+        </header>
+
         <div id="username-page">
             <div class="username-page-container">
                 <h3 class="title">Welcome ${user}</h3>
