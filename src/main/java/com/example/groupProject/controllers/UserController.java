@@ -124,18 +124,18 @@ public class UserController {
         User user = userService.findById(userid).get();
         model.addAttribute("user", user);
         model.addAttribute("edit", true);
-        return "RegisterForm";
+        return "editUserForm";
     }
 
     @RequestMapping(value = {"/edit-{userid}-user"}, method = RequestMethod.POST)
     public String updateUser(@Valid User user, BindingResult result,
             ModelMap model, @PathVariable String userid) {
         if (result.hasErrors()) {
-            return "RegisterForm";
+            return "editUserForm";
         }
         userService.updateUser(user);
         model.addAttribute("success", "User " + user.getUsername() + " updated successfully");
-        return "successUserRegistration";
+        return "redirect:/listofusers";
     }
 
     @RequestMapping(value = {"/delete-{userid}-user"}, method = RequestMethod.GET)

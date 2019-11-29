@@ -40,15 +40,15 @@
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
 
-                                <spring:input path="username" name="username" type="text" class="form-control"
-                                              value='${user}' placeholder='${user}' autofocus="true"/>
+                                <spring:input path="username" name="username" type="text" placeholder="Username" class="form-control"
+                                              value='${user}'  autofocus="true"/>
                                 <spring:errors path="username" cssClass="error"/>
                             </div>
 
 
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
                                 <spring:input path="job" name="job" type="job" class="form-control"
                                               placeholder="Job"/>
