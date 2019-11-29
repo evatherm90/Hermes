@@ -50,19 +50,7 @@
                 <a href="<c:url value='/editUserprofile' />" class="btn float-right login_btn">Edit</a>
             </div>
             
-            <table>
-            <thead>
-                <tr>
-                    <th style="color:white;">My Contacts:</th>    
-                </tr>
-            </thead>
-            <c:forEach items="${userrs}" var="userr">
-                <tr style="color:white;">
-                    <td><a href="<c:url value='/privatechat-${userr.username}'/>" >Message ${userr.username} </a></td>
-                    
-                </tr>
-            </c:forEach>
-        </table>
+    
            
              </div>
         </div>

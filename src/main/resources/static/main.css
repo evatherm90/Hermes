@@ -37,6 +37,7 @@ body:before {
 /*    background: rgb(0, 162, 255);*/
     content: "";
     z-index: 0;
+    pointer-events: none;
 }
 
 .clearfix:after {

@@ -5,13 +5,19 @@
  */
 package com.example.groupProject.controllers;
 
+import com.example.groupProject.model.Role;
 import com.example.groupProject.model.User;
 import com.example.groupProject.model.Userprofile;
+import com.example.groupProject.repositories.RoleRepository;
 import com.example.groupProject.repositories.UserRepository;
 import com.example.groupProject.sercices.UserService;
 import com.example.groupProject.sercices.UserprofileService;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -35,6 +41,9 @@ public class UserprofileController {
      
      @Autowired
     UserRepository ur;
+     
+     @Autowired
+    RoleRepository rr;
     
     @GetMapping("/accountsettings")
     public String getUserAccountSettings(ModelMap model) {
@@ -46,6 +55,24 @@ public class UserprofileController {
          model.addAttribute("user", user);
          Iterable<User> userrs = userService.getUsers();
         model.addAttribute("userrs", userrs);
+//        Role role=rr.findRoleByUserid(user.getUserid());
+        List<String> roleList=new ArrayList<>();
+//        roles=user.getRoleCollection();
+Collection<Role> roles = user.getRoleCollection();
+
+        for (Role role : roles) {
+            roleList.add(role.getRolename());
+            System.out.println("adding Role" + role.getRolename());
+        }
+        if(roleList.contains("Premium User")){
+        model.addAttribute("role", "Premium User");
+        }else if(roleList.contains("Admin")){
+        model.addAttribute("role", "Admin");
+        }else{
+        model.addAttribute("role", "Free User");
+        return "freeuserAccountSettings";
+        }
+
         return "accountsettings";
     }
     
